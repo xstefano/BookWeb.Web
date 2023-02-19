@@ -1,0 +1,77 @@
+<app-header></app-header>
+
+<body class="min-vh-100 d-flex flex-column justify-content-center" style="background-color: #eee;">
+
+    <div class="text-center py-5">
+        <h1 class="display-4 mt-5">Orders</h1>
+        <div *ngIf="orderUser.length === 0">
+            <h5 style="opacity: 0.75;">Your order list is empty</h5>
+        </div>
+        <a href="/dashboard" class="btn btn-info my-3">
+            Procced to dashboard <i class="bi bi-arrow-right"></i>
+        </a>
+
+        <div class="modal fade" id="myModal" data-bs-keyboard="true" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="false">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-5" id="myModalLabel">Order Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Book</th>
+                                    <th></th>
+                                    <th>Quantity</th>
+                                    <th>UnitPrice</th>
+                                    <th>TotalPrice</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of orderItems">
+                                    <td>
+                                        <img src="{{ getBook(item.bookId).imagenURL }}" style="width: 100px; height: 150px;">
+                                    </td>
+                                    <td class="fs-5 fw-normal" style="text-align: center; vertical-align: middle;">{{ getBook(item.bookId).title}}</td>
+                                    <td class="fs-5 fw-normal" style="text-align: center; vertical-align: middle;">{{ item.quantity }}</td>
+                                    <td class="fs-5 fw-normal" style="text-align: center; vertical-align: middle;">${{ item.unitPrice.toFixed(2) }}</td>
+                                    <td class="fs-5 fw-normal" style="text-align: center; vertical-align: middle;">${{ item.totalPrice.toFixed(2) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3 py-5">
+            <table class="table cart-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>TotalPrice</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orderUser">
+                        <td class="fs-5 fw-normal text-center" style="vertical-align: middle;">{{order.id}}</td>
+                        <td class="fs-5 fw-normal text-center" style="vertical-align: middle;">{{order.userName}}</td>
+                        <td class="fs-5 fw-normal text-center" style="vertical-align: middle;">${{order.totalPrice}} USD</td>
+                        <td class="fs-5 fw-normal text-center" style="vertical-align: middle;">{{order.createdAt | date: 'dd/MM/yyyy | hh:mm a'}}</td>
+                        <td>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal" (click)="openModal(order)">
+                            Show Details
+                        </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+    </div>
+<app-footer></app-footer>

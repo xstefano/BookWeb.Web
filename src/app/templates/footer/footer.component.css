@@ -1,0 +1,10 @@
+footer {
+    position: inherit;
+    bottom: 0;
+    width: 100%;
+}
+
+footer {
+    min-height: 50px;
+    padding: 10px;
+    }

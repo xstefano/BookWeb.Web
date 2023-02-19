@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<body class="min-vh-100 d-flex flex-column justify-content-center" style="background-color: #eee;">
+    <div class="text-center py-5">
+        <h1 class="display-4 mt-5">Shopping cart</h1>
+        <div *ngIf="cartItems.length === 0">
+            <h5 style="opacity: 0.75;">Your cart is currently empty.</h5>
+        </div>
+        <a href="/dashboard" class="btn btn-info my-3">
+            Proceed to dashboard <i class="bi bi-arrow-right"></i>
+        </a>
+
+        <div *ngIf="cartItems.length > 0">
+            <div class="container mt-3 py-5">
+                <table class="table cart-table">
+                    <thead>
+                        <tr>
+                            <th class="fs-5" >Book</th>
+                            <th></th>
+                            <th class="fs-5" >Price</th>
+                            <th class="fs-5" >Cantidad</th>
+                            <th class="fs-5" >Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cartItems;">
+                            <td>
+                                <img src="{{ getBook(item.bookId).imagenURL }}" style="width: 125px; height: 175px;">
+                            </td>
+                            <td class="fs-5 fw-normal" style="text-align: center; vertical-align: middle;">
+                                {{ getBook(item.bookId).title}}
+                                <br>
+                                <a class="link-secondary" (click)="removeItem(item.bookId)" style="cursor: pointer;">Remove item</a>
+                            </td>
+                            <td class="fs-5 fw-normal" style="text-align: center; vertical-align: middle;">
+                                ${{ item.unitPrice.toFixed(2) }}
+                            </td>
+                            <div class="text-center" style="display: table-cell; vertical-align: middle;">
+                                <input type="number" step="1" [value]="item.quantity" min="1" class="align-middle small-input text-center" (input)="onQuantityChange($event, item.bookId)">
+                            </div>
+                            <td class="fs-5 fw-normal" style="text-align: center; vertical-align: middle;">${{ item.totalPrice.toFixed(2) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fs-5" colspan="4" style="text-align: right;">Total:</td>
+                            <td class="fs-5" style="text-align: center;">${{ getTotalPrice() }} USD</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: left;">
+                    
+                            </td>
+                            <td>
+                                <button style="text-align: center;" class="btn btn-primary" (click)="onCheckout()"><i class="bi bi-bag-check-fill"></i> Checkout </button>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td colspan="4" style="text-align: left;">
+                    
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" (click)="onRemoveAllItems()"><i class="bi bi-eraser-fill"></i> Clear Cart </button>
+                            </td>
+                        </tr> 
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<app-footer></app-footer>
