@@ -1,27 +1,54 @@
 # BookWeb.Web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+Este proyecto en Angular V15 consume la API de [**BookWeb.API**](https://github.com/xstefano/BookWeb.API.git) y proporciona funcionalidades para simular una tienda de libros.
 
-## Development server
+## Vistas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Login**: Permite a los usuarios iniciar sesión.
+- **Register**: Permite a los usuarios registrarse para iniciar sesión.
+- **Dashboard**: Muestra todos los libros de la tienda.
+- **Store**: Carrito de compras donde se visualizan los items agregados al carrito.
+- **Orders**: Muestra el historial de las órdenes realizadas.
 
-## Code scaffolding
+## Requisitos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Node.js](https://nodejs.org/en)
+- [Angular v15](https://angular.io/)
 
-## Build
+## Instalación
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clona este repositorio en tu máquina local.
+2. Navega hasta el directorio del proyecto.
+3. Ejecuta el siguiente comando para instalar las dependencias: `npm install`
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Configuración
 
-## Running end-to-end tests
+Antes de ejecutar la aplicación, asegúrate de actualizar las URL de la API en los siguientes archivos para que coincidan con la ubicación de tu servicio de API de BookWeb.API:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `src/app/services/auth.service.ts`
+- `src/app/services/book.service.ts`
+- `src/app/services/cart.service.ts`
+- `src/app/services/order.service.ts`
 
-## Further help
+## Ejecución
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Ejecuta el siguiente comando para iniciar el servidor de desarrollo: `ng serve`
+
+
+Una vez que el servidor esté en funcionamiento, puedes acceder a la aplicación en tu navegador web en la siguiente URL: `http://localhost:4200`.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas mejorar este proyecto, sigue estos pasos:
+
+1. Haz un fork de este repositorio.
+2. Crea una rama con tu nueva función: `git checkout -b mi-nueva-funcion`.
+3. Realiza los cambios y guarda el archivo.
+4. Confirma tus cambios: `git commit -m "Agregar mi nueva función"`.
+5. Haz push a la rama: `git push origin mi-nueva-funcion`.
+6. Abre una pull request en este repositorio.
+
+## Contacto
+
+Si tienes alguna pregunta o consulta, no dudes en contactarme a través de andres.aleg.19@gmail.com
